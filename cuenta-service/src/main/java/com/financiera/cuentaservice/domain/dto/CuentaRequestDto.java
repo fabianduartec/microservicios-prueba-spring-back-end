@@ -1,9 +1,10 @@
 package com.financiera.cuentaservice.domain.dto;
 
 import jakarta.validation.constraints.*;
+import lombok.Builder;
 
 import java.math.BigDecimal;
-
+@Builder
 public record CuentaRequestDto(
         @NotNull(message = "Numero de cuenta obligatorio")
         @Min(value = 100000L, message = "Minimo 6 digitos")

@@ -1,7 +1,9 @@
 package com.financiera.clienteservice.domain.dto;
 
 import jakarta.validation.constraints.*;
+import lombok.Builder;
 
+@Builder
 public record ClienteRequestDto(
         @NotBlank(message = "Nombre es obligatorio") @Size(max = 100) String clienteNombre,
         String clienteGenero,

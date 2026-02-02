@@ -85,24 +85,18 @@ Esperar:
 text
  HikariPool-1 - Start completed.
  Started ClienteServiceApplication in 45s
- Tomcat started on port(s): 8081 (http)
+ Tomcat started on port(s): 8080 (http)
  Started CuentaServiceApplication in 42s
- Tomcat started on port(s): 8082 (http)
- Pruebas F1+F2+F3 (Postman/cURL)
+ Tomcat started on port(s): 8081 (http)
 
-Comandos Git + Docker
-Git Workflow
-bash
+## Pruebas F1+F2+F3 (Postman/cURL)
+
 # Clonar y actualizar
-git clone https://github.com/tu-usuario/microservicios-prueba-spring-back-end.git
+git clone https://github.com/fabianduartec/microservicios-prueba-spring-back-end.git
 cd microservicios-prueba-spring-back-end
 git checkout main
 git pull origin main
 
-# Commits locales
-git add .
-git commit -m "feat: agregar F3 saldo insuficiente"
-git push origin main
 Docker Comandos ÚTILES
 bash
 #  Despliegue completo
@@ -114,6 +108,7 @@ docker logs -f financiera-cuenta-service
 
 #  Reiniciar servicio específico
 docker-compose restart cliente-service
+docker-compose restart cuenta-service
 
 #  Parar todo
 docker-compose down

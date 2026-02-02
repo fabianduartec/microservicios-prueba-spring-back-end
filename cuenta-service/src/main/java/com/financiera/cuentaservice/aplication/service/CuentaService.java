@@ -1,11 +1,8 @@
 package com.financiera.cuentaservice.aplication.service;
 
-import com.financiera.cuentaservice.consumer.ClienteEventoConsumer;
+import com.financiera.cuentaservice.aplication.service.cache.ClienteCacheLocal;
 import com.financiera.cuentaservice.domain.common.CuentaNoEncontradaException;
-import com.financiera.cuentaservice.domain.dto.CuentaEventoDto;
-import com.financiera.cuentaservice.domain.dto.CuentaRequestDto;
-import com.financiera.cuentaservice.domain.dto.CuentaResponseDto;
-import com.financiera.cuentaservice.domain.dto.CuentaUpdateRequestDto;
+import com.financiera.cuentaservice.domain.dto.*;
 import com.financiera.cuentaservice.domain.model.Cuenta;
 import com.financiera.cuentaservice.domain.repository.CuentaRepository;
 import com.financiera.cuentaservice.producer.CuentaEventoProducer;
@@ -24,18 +21,22 @@ import java.util.stream.Collectors;
 public class CuentaService {
     private final CuentaRepository cuentaRepository;
     private final CuentaEventoProducer cuentaEventoProducer;
-    private final ClienteEventoConsumer clienteEventoConsumer;
+    private final ClienteCacheLocal clienteCacheLocal;
 
-    public CuentaResponseDto createCuenta(Long idPersona, CuentaRequestDto request){
-        //Obtener Cliente por nombre
-        clienteEventoConsumer.validarCliente(idPersona);
+    public CuentaResponseDto createCuenta(Long idCliente, CuentaRequestDto request){
+        if (!clienteCacheLocal.clienteExiste(idCliente)) {
+            log.warn("idCliente {} propagándose via Kafka...", idCliente);
+        }
+        if (cuentaRepository.existsByNumeroCuenta(request.cuentaNumero())) {
+            throw new IllegalArgumentException("Cuenta ya existe: " + request.cuentaNumero());
+        }
         Cuenta cuenta = new Cuenta();
         cuenta.setNumeroCuenta(request.cuentaNumero());
         cuenta.setTipoCuenta(request.cuentaTipo());
         cuenta.setSaldoInicial(request.cuentaSaldoInicial());
         cuenta.setSaldoActual(request.cuentaSaldoInicial());
         cuenta.setEstadoCuenta(true);
-        cuenta.setIdPersona(idPersona);
+        cuenta.setIdCliente(idCliente);
         cuenta.setNombreCliente(request.clienteNombre());
 
         Cuenta saved = cuentaRepository.save(cuenta);
@@ -43,10 +44,11 @@ public class CuentaService {
         CuentaEventoDto evento = CuentaEventoDto.builder()
                 .cuentaId(cuenta.getIdCuenta())
                 .numeroCuenta(cuenta.getNumeroCuenta())
-                .clienteId(cuenta.getIdPersona())
+                .clienteId(cuenta.getIdCliente())
                 .tipoEvento("CUENTA_CREADA")
                 .build();
-        cuentaEventoProducer.sendMovimientoEvent(evento);
+        cuentaEventoProducer.sendCuentaCreadaEvent(evento);
+        clienteCacheLocal.marcarClienteExistente(idCliente);
         return mapToResponse(saved);
     }
     public List<CuentaResponseDto> getAllCuentas(){
@@ -72,7 +74,7 @@ public class CuentaService {
                 cuenta.getSaldoInicial(),
                 cuenta.getSaldoActual(),
                 cuenta.getEstadoCuenta(),
-                cuenta.getIdPersona(),
+                cuenta.getIdCliente(),
                 cuenta.getNombreCliente(),
                 (long) cuenta.getMovimientos().size()
         );

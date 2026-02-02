@@ -36,7 +36,7 @@ public class Cuenta {
     private Boolean estadoCuenta = true;
     //pendiente nullables
     @Column(name="id_cliente")
-    private Long idPersona;
+    private Long idCliente;
 
     @Column(length = 100)
     private String nombreCliente;

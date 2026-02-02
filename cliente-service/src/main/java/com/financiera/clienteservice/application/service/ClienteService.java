@@ -104,4 +104,18 @@ public class ClienteService {
                 cliente.getEstadoCliente()
         );
     }
+    public void crearClienteAutomatico(Long idCliente, String nombreCliente) {
+        log.info("Cliente automático: idCliente={}", idCliente);
+
+        if (clienteRepository.existsByIdCliente(idCliente)) {
+            log.info("Cliente idCliente={} YA EXISTE", idCliente);
+            return;
+        }
+        ClienteRequestDto request = ClienteRequestDto.builder()
+                .clienteIdentificacion(idCliente)
+                .clienteNombre(nombreCliente)
+                .clienteEstado(Boolean.TRUE)
+                .build();
+        createCliente(request);
+    }
 }

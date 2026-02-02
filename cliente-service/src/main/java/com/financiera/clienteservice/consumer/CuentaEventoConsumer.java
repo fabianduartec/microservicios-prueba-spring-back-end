@@ -1,56 +1,35 @@
 package com.financiera.clienteservice.consumer;
 
+import com.financiera.clienteservice.application.service.ClienteService;
+import com.financiera.clienteservice.domain.dto.CuentaEventoDto;
+import com.financiera.clienteservice.domain.repository.ClienteRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class CuentaEventoConsumer {
+    private final ClienteService clienteService;
+    private final ClienteRepository clienteRepository;
 
     @KafkaListener(topics = "cuenta-events", groupId = "cliente-group")
-    public void consume(String message) {
-        log.info("CUENTA EVENTO RECIBIDO: {}", message);
-
+    public void handleCuentaCreada(CuentaEventoDto event) {
+        Long clienteId = event.getClienteId();
+        log.info("CUENTA_CREADA recibido: {} para cliente: {}",
+                event.getNumeroCuenta(), event.getClienteId());
         try {
-            if (message.contains("CUENTA_CREADA")) {
-                String numeroCuenta = extraerNumeroCuenta(message);
-                String clienteId = extraerClienteId(message);
-                log.info("CUENTA_CREADA: Cuenta={} Cliente={}", numeroCuenta, clienteId);
+            if (clienteRepository.existsByIdCliente(clienteId)) {
+                log.info("Cliente {} YA EXISTE - NO crear automático", clienteId);
+                return;
             }
-            else if (message.contains("MOVIMIENTO_REGISTRADO")) {
-                String numeroCuenta = extraerNumeroCuenta(message);
-                String valor = extraerValor(message);
-                String saldo = extraerSaldo(message);
-                log.info("MOVIMIENTO_REGISTRADO: Cuenta={} Valor={} Saldo={}", numeroCuenta, valor, saldo);
-            }
-            else if (message.contains("SALDO_INSUFICIENTE")) {
-                String numeroCuenta = extraerNumeroCuenta(message);
-                String mensajeError = extraerMensaje(message);
-                log.error("SALDO_INSUFICIENTE: Cuenta={} Mensaje={}", numeroCuenta, mensajeError);
-            }
+            log.info("Creando cliente AUTOMÁTICO para cuenta: {}", event.getNumeroCuenta());
+            clienteService.crearClienteAutomatico(event.getClienteId(), "Cliente " + event.getClienteId());
+
         } catch (Exception e) {
-            log.error("Error procesando evento cuenta: {}", e.getMessage());
+            log.error("Error procesando cuenta {}: {}", event.getNumeroCuenta(), e.getMessage());
         }
-    }
-
-    private String extraerNumeroCuenta(String message) {
-        return message.replaceAll("\"numeroCuenta\":\"([^\"]+)\"", "$1");
-    }
-
-    private String extraerClienteId(String message) {
-        return message.replaceAll("\"clienteId\":\"([^\"]+)\"", "$1");
-    }
-
-    private String extraerValor(String message) {
-        return message.replaceAll("\"valor\":([\\d.-]+)", "$1");
-    }
-
-    private String extraerSaldo(String message) {
-        return message.replaceAll("\"saldo\":([\\d.-]+)", "$1");
-    }
-
-    private String extraerMensaje(String message) {
-        return message.replaceAll("\"mensaje\":\"([^\"]+)\"", "$1");
     }
 }
