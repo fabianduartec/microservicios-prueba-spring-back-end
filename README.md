@@ -3,8 +3,8 @@
 ## Descripción
 Arquitectura de **microservicios** con **Spring Boot 4.0.2**, **Kafka**, **PostgreSQL** y **Docker Compose**:
 
-- **cliente-service** (`localhost:8081`) → CRUD Clientes + Eventos
-- **cuenta-service** (`localhost:8082`) → CRUD Cuentas/Movimientos + F2/F3
+- **cliente-service** (`localhost:8080`) → CRUD Clientes + Eventos
+- **cuenta-service** (`localhost:8081`) → CRUD Cuentas/Movimientos + F2/F3
 - **Comunicación asíncrona** via **Kafka** (cliente ↔ cuenta)
 - **Bases separadas** PostgreSQL (clientedb, cuentadb)
 
