@@ -2,7 +2,6 @@ package com.financiera.cuentaservice.aplication.service;
 
 import com.financiera.cuentaservice.domain.common.CuentaNoEncontradaException;
 import com.financiera.cuentaservice.domain.common.SaldoInsuficienteException;
-import com.financiera.cuentaservice.domain.common.TipoEstadoMovimiento;
 import com.financiera.cuentaservice.domain.common.TipoMovimiento;
 import com.financiera.cuentaservice.domain.dto.CuentaEventoDto;
 import com.financiera.cuentaservice.domain.dto.MovimientoRequestDto;
@@ -23,6 +22,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -69,14 +69,12 @@ public class MovimientoService {
                 movimiento.getSaldo(),
                 movimiento.getEstadoMovimiento(),
                 movimiento.getCuenta().getNumeroCuenta(),
-                movimiento.getCuenta().getTipoCuenta(),
-                movimiento.getNombreCliente()
+                movimiento.getCuenta().getTipoCuenta()
         );
     }
 
     public MovimientoResponseDto registrarMovimientos(MovimientoRequestDto movimientoRequestDto){
         Cuenta cuenta = cuentaRepository.findByNumeroCuenta(movimientoRequestDto.cuentaNumero()).orElseThrow(()-> new CuentaNoEncontradaException(movimientoRequestDto.cuentaNumero()));
-        //Solo para retiros
         validarSaldoInsuficiente(cuenta, movimientoRequestDto);
         BigDecimal valorConSigno = obtenerValorConsigno(movimientoRequestDto);
         BigDecimal nuevoValor = calcularNuevoSaldo(cuenta.getSaldoActual(), valorConSigno);
@@ -89,10 +87,7 @@ public class MovimientoService {
                 .valor(valorConSigno)
                 .saldo(nuevoValor)
                 .cuenta(cuenta)
-                .estadoMovimiento(
-                        Optional.ofNullable(movimientoRequestDto.tipoEstadoMovimiento())
-                                .orElse(TipoEstadoMovimiento.CONFIRMADO)
-                )
+                .estadoMovimiento(Boolean.TRUE)
                 .build();
         MovimientoResponseDto movimientoResponse = createMovimiento(movimiento);
         CuentaEventoDto eventoExito = CuentaEventoDto.builder()
@@ -125,7 +120,7 @@ public class MovimientoService {
                         cuenta.getNumeroCuenta(), cuenta.getSaldoActual(), request.movimientoValor());
 
                 cuentaEventoProducer.sendMovimientoEvent(eventoError);
-                throw new SaldoInsuficienteException(cuenta.getSaldoInicial(),request.movimientoValor());
+                throw new SaldoInsuficienteException(cuenta.getSaldoActual(),request.movimientoValor());
             }
         }
     }
@@ -138,36 +133,42 @@ public class MovimientoService {
             case RETIRO -> request.movimientoValor().negate();
         };
     }
-    public void validarEscenarioProduccion(TipoEstadoMovimiento actual, TipoEstadoMovimiento nuevo, String motivo){
-        switch (actual) {
-            case PROVISIONAL -> {
-                //ESCENARIO 1: Cheques
-                if (nuevo == TipoEstadoMovimiento.CONFIRMADO &&
-                        (motivo.contains("cheque") || motivo.contains("cobro"))) {
-                    return;
-                }
+    public void validarEscenarioProduccion(Boolean actual, Boolean nuevo, String motivo){
+        if (Boolean.FALSE.equals(actual)) {
+            throw new UnsupportedOperationException(
+                    "PRODUCCIÓN: Movimientos históricos CONFIRMADOS no se actualizan."
+            );
+        }
+        validarEscenariosProvisional(nuevo, motivo);
+    }
+
+    private void validarEscenariosProvisional(Boolean nuevo, String motivo) {
+        final Set<String> motivosConfirmacion = Set.of("cheque", "cobro");
+        final Set<String> motivosCancelacion = Set.of("comision", "parcial", "error", "duplicado");
+        final Set<String> motivosConciliacion = Set.of("conciliacion");
+
+        if (nuevo != null) {
+            if (nuevo && coincidenPalabras(motivo, motivosConfirmacion)) {
+                return;
             }
-            case CONFIRMADO -> {
-                //ESCENARIO 2: Conciliación bancaria
-                if (nuevo == TipoEstadoMovimiento.CONFIRMADO && motivo.contains("conciliacion")) {
-                    return;
-                }
-                //ESCENARIO 3: Comisiones parciales
-                if (nuevo == TipoEstadoMovimiento.CANCELADO &&
-                        (motivo.contains("comision") || motivo.contains("parcial"))) {
-                    return;
-                }
-                //ESCENARIO 4: Error humano
-                if (nuevo == TipoEstadoMovimiento.CANCELADO &&
-                        (motivo.contains("error") || motivo.contains("duplicado"))) {
-                    return;
-                }
+            if (!nuevo && coincidenPalabras(motivo, motivosConciliacion)) {
+                return;
+            }
+            if (nuevo && coincidenPalabras(motivo, motivosCancelacion)) {
+                return;
             }
         }
-        //BLOQUEO PRODUCCIÓN
         throw new UnsupportedOperationException(
-                "PRODUCCIÓN: Movimientos históricos NO se actualizan. " +
-                        "Solo 4 escenarios específicos permitidos."
+                "PRODUCCIÓN: Solo 4 escenarios específicos permitidos para PROVISIONAL: " +
+                        "cheque/cobro (→CONFIRMADO), conciliacion (→CONFIRMADO), " +
+                        "comision/parcial/error/duplicado (→CANCELADO)"
         );
+    }
+
+    private boolean coincidenPalabras(String motivo, Set<String> palabrasClave) {
+        return Optional.ofNullable(motivo)
+                .map(String::toLowerCase)
+                .filter(m -> palabrasClave.stream().anyMatch(m::contains))
+                .isPresent();
     }
 }

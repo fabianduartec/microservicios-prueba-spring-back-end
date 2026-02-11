@@ -13,10 +13,11 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class CuentaEventoDto {
     private Long cuentaId;
-    private String numeroCuenta;
+    private Long numeroCuenta;
     private Long clienteId;
+    private String clienteNombre;
     private String tipoCuenta;
-    private Double saldo;
+    private BigDecimal saldo;
     private String tipoEvento;
     private BigDecimal valor;
     private String mensaje;

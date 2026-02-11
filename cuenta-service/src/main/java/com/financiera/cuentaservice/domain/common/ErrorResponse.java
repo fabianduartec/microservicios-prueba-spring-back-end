@@ -16,7 +16,6 @@ public class ErrorResponse {
     private LocalDateTime timestamp;
     private int status;
 
-    // Constructor simple (sin detalles)
     public ErrorResponse(String codigo, String mensaje) {
         this.codigo = codigo;
         this.mensaje = mensaje;

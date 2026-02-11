@@ -35,7 +35,7 @@ public class CuentaService {
         cuenta.setTipoCuenta(request.cuentaTipo());
         cuenta.setSaldoInicial(request.cuentaSaldoInicial());
         cuenta.setSaldoActual(request.cuentaSaldoInicial());
-        cuenta.setEstadoCuenta(true);
+        cuenta.setEstadoCuenta(Boolean.TRUE);
         cuenta.setIdCliente(idCliente);
         cuenta.setNombreCliente(request.clienteNombre());
 
@@ -45,6 +45,7 @@ public class CuentaService {
                 .cuentaId(cuenta.getIdCuenta())
                 .numeroCuenta(cuenta.getNumeroCuenta())
                 .clienteId(cuenta.getIdCliente())
+                .clienteNombre(cuenta.getNombreCliente())
                 .tipoEvento("CUENTA_CREADA")
                 .build();
         cuentaEventoProducer.sendCuentaCreadaEvent(evento);

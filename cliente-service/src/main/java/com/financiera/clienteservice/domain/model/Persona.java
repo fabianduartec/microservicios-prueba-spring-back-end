@@ -1,16 +1,12 @@
 package com.financiera.clienteservice.domain.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)  // ← PADRE define tabla
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_persona", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("PERSONA")
 @Getter @Setter

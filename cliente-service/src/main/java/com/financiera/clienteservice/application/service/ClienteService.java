@@ -115,6 +115,7 @@ public class ClienteService {
                 .clienteIdentificacion(idCliente)
                 .clienteNombre(nombreCliente)
                 .clienteEstado(Boolean.TRUE)
+                .clienteContrasena(idCliente.toString())
                 .build();
         createCliente(request);
     }

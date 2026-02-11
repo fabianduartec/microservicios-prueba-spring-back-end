@@ -1,6 +1,5 @@
 package com.financiera.cuentaservice.domain.model;
 
-import com.financiera.cuentaservice.domain.common.TipoEstadoMovimiento;
 import com.financiera.cuentaservice.domain.common.TipoMovimiento;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -11,7 +10,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "movimientos")
@@ -40,15 +38,8 @@ public class Movimiento {
     @Digits(integer = 12, fraction = 2)
     private BigDecimal saldo;
 
-    @Enumerated(EnumType.STRING)
     @Column(name="estado_movimiento", nullable = false)
-    private TipoEstadoMovimiento estadoMovimiento;
-
-    @Column(name="id_cliente")
-    private Long idCliente;
-
-    @Size(max=100)
-    private String nombreCliente;
+    private Boolean estadoMovimiento;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cuenta_id", nullable = false)

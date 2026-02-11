@@ -26,7 +26,7 @@ public class CuentaEventoConsumer {
                 return;
             }
             log.info("Creando cliente AUTOMÁTICO para cuenta: {}", event.getNumeroCuenta());
-            clienteService.crearClienteAutomatico(event.getClienteId(), "Cliente " + event.getClienteId());
+            clienteService.crearClienteAutomatico(event.getClienteId(), "Cliente " + event.getClienteNombre());
 
         } catch (Exception e) {
             log.error("Error procesando cuenta {}: {}", event.getNumeroCuenta(), e.getMessage());
