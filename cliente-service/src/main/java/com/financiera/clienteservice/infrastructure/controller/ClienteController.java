@@ -31,8 +31,8 @@ public class ClienteController {
     }
 
     @GetMapping("/get/{idCliente}")
-    public ResponseEntity<ClienteResponseDto> obtenerCliente(@PathVariable Long id) {
-        return ResponseEntity.ok(clienteService.getClienteById(id));
+    public ResponseEntity<ClienteResponseDto> obtenerCliente(@PathVariable Long idCliente) {
+        return ResponseEntity.ok(clienteService.getClienteById(idCliente));
     }
 
     @PutMapping("/update/{idPersona}")

@@ -15,6 +15,7 @@ public class CuentaEventoDto {
     private Long cuentaId;
     private Long numeroCuenta;
     private Long clienteId;
+    private String clienteNombre;
     private String tipoCuenta;
     private BigDecimal saldo;
     private String tipoEvento;

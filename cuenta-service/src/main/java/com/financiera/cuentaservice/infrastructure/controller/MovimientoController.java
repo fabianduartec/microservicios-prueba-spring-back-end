@@ -30,8 +30,8 @@ public class MovimientoController {
     }
 
     @GetMapping("/get/{idMovimiento}")
-    public ResponseEntity<MovimientoResponseDto> obtenerMovimiento(@PathVariable Long id) {
-        return ResponseEntity.ok(movimientoService.getMovimientoById(id));
+    public ResponseEntity<MovimientoResponseDto> obtenerMovimiento(@PathVariable Long idMovimiento) {
+        return ResponseEntity.ok(movimientoService.getMovimientoById(idMovimiento));
     }
 
     @PutMapping("/update/{idMovimiento}")

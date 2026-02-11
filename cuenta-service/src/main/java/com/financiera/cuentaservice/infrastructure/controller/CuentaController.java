@@ -18,10 +18,10 @@ import java.util.List;
 public class CuentaController {
     private final CuentaService cuentaService;
 
-    @PostMapping("/create/{idPersona}")
-    public ResponseEntity<CuentaResponseDto> crearCuenta(@PathVariable Long idPersona, @Valid @RequestBody CuentaRequestDto request) {
+    @PostMapping("/create/{idCliente}")
+    public ResponseEntity<CuentaResponseDto> crearCuenta(@PathVariable Long idCliente, @Valid @RequestBody CuentaRequestDto request) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(cuentaService.createCuenta(idPersona, request));
+                .body(cuentaService.createCuenta(idCliente, request));
     }
 
     @GetMapping("/getAll")

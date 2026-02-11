@@ -12,9 +12,21 @@ import org.springframework.stereotype.Service;
 public class CuentaEventoProducer {
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
+    private static final String TOPIC = "cuenta-events";
+
+    public void sendCuentaCreadaEvent(CuentaEventoDto event) {
+        kafkaTemplate.send(TOPIC, event.getCuentaId().toString(), event)
+                .whenComplete((result, ex) -> {
+                    if (ex == null) {
+                        log.info("CUENTA_CREADA enviado: cuentaId={}", event.getCuentaId());
+                    } else {
+                        log.error("Error Kafka Producer: {}", ex.getMessage());
+                    }
+                });
+    }
 
     public void sendMovimientoEvent(CuentaEventoDto event) {
-        kafkaTemplate.send("cuenta-events", event.getCuentaId().toString(), event)
+        kafkaTemplate.send(TOPIC, event.getCuentaId().toString(), event)//igual que cuenta evento?
                 .whenComplete((result, ex) -> {
                     if (ex == null) {
                         log.info("Evento enviado: topic=cuenta-events, cuentaId={}",

@@ -1,6 +1,5 @@
 package com.financiera.cuentaservice.domain.dto;
 
-import com.financiera.cuentaservice.domain.common.TipoEstadoMovimiento;
 import com.financiera.cuentaservice.domain.common.TipoMovimiento;
 
 import java.math.BigDecimal;
@@ -12,9 +11,8 @@ public record MovimientoResponseDto(
         TipoMovimiento movimientoTipo,
         BigDecimal movimientoValor,
         BigDecimal movimientoSaldo,
-        TipoEstadoMovimiento estadoMovimiento,
+        Boolean estadoMovimiento,
         Long cuentaId,
-        String cuentaTipo,
-        String nombreCliente
+        String cuentaTipo
 ) {
 }

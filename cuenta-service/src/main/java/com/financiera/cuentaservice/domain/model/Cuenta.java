@@ -34,9 +34,8 @@ public class Cuenta {
 
     @Column(name="estado_cuenta", nullable = false)
     private Boolean estadoCuenta = true;
-    //pendiente nullables
-    @Column(name="id_cliente")
-    private Long idPersona;
+    @Column(name="id_cliente", nullable = false)
+    private Long idCliente;
 
     @Column(length = 100)
     private String nombreCliente;

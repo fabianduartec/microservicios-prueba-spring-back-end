@@ -6,7 +6,8 @@ import lombok.Data;
 public class ClienteEventoDto {
     private Long clienteId;
     private String nombre;
-    private String identificacion;
-    private String estado;
+    private Long identificacion;
+    private Boolean estado;
+    private String tipoEvento;
 }
 
