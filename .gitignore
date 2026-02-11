@@ -48,7 +48,6 @@ logs/
 lombok.log
 
 # Docker
-docker-compose*.yml
 .dockerignore
 
 # Karate DSL
