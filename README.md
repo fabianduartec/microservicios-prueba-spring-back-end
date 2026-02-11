@@ -106,7 +106,7 @@ src\test\java\
 				ClienteServiceTest.java
 ### 2. Dar clic derecho y Run ClienteServiceTest
 
-Esperar 2 ✓ en verde
+Esperar alerta "✓ 2 tests passed" en verde
 
 ### **Set de Pruebas Karate (carpeta `src/test`)**
 
@@ -116,7 +116,7 @@ src\test\java
 	
 ### 2. Dar clic derecho y Run KarateTests
 
-Esperar 5 ✓ en verde
+Esperar alerta "✓ 5 tests passed" en verde
 
 ## PRUEBAS UNITARIAS cuenta-service
 
@@ -128,7 +128,7 @@ src\test\java
 
 ### 2. Dar clic derecho y Run KarateTests
 
-Esperar 7 ✓ en verde
+Esperar alerta "✓ 6 tests passed" en verde
 
 # PRUEBAS UNITARIAS Postman Collection
 
