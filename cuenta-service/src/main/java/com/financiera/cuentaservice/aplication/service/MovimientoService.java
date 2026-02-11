@@ -30,11 +30,11 @@ import java.util.stream.Collectors;
 @Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
 public class MovimientoService {
-    public final MovimientoRepository movimientoRepository;
-    public final CuentaRepository cuentaRepository;
+    private final MovimientoRepository movimientoRepository;
+    private final CuentaRepository cuentaRepository;
     private final CuentaEventoProducer cuentaEventoProducer;
 
-    public MovimientoResponseDto createMovimiento(Movimiento movimiento){
+    private MovimientoResponseDto createMovimiento(Movimiento movimiento){
         Movimiento saved = movimientoRepository.save(movimiento);
         return mapToResponse(saved);
     }

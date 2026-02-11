@@ -17,6 +17,6 @@ public class Cliente extends Persona {
     private String contrasenaCliente;
 
     @Column(name = "estado_cliente", nullable = false)
-    private Boolean estadoCliente = true;
+    private Boolean estadoCliente;
 
 }
