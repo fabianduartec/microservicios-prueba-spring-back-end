@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "3b611eda-519a-43dc-897e-676becc05c70",
-    "name": "financiera-postman",
+    "_postman_id": "6c6081f1-4e80-40e4-ac16-17e70587adeb",
+    "name": "financiera-postman Copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "49184354",
-    "_collection_link": "https://go.postman.co/collection/49184354-3b611eda-519a-43dc-897e-676becc05c70?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/49184354-6c6081f1-4e80-40e4-ac16-17e70587adeb?source=collection_link"
   },
   "item": [
     {
@@ -107,7 +107,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/clientes/get/1",
+          "raw": "http://localhost:8080/clientes/get/2",
           "protocol": "http",
           "host": [
             "localhost"
@@ -116,7 +116,7 @@
           "path": [
             "clientes",
             "get",
-            "1"
+            "2"
           ]
         }
       },
@@ -152,7 +152,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/clientes/update/6",
+          "raw": "http://localhost:8080/clientes/update/2",
           "protocol": "http",
           "host": [
             "localhost"
@@ -161,7 +161,7 @@
           "path": [
             "clientes",
             "update",
-            "6"
+            "2"
           ]
         }
       },
@@ -197,7 +197,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/clientes/update/1/password",
+          "raw": "http://localhost:8080/clientes/update/2/password",
           "protocol": "http",
           "host": [
             "localhost"
@@ -206,7 +206,7 @@
           "path": [
             "clientes",
             "update",
-            "1",
+            "2",
             "password"
           ]
         }

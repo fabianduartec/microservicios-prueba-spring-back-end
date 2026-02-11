@@ -44,7 +44,7 @@ Git 2.30+            git --version
 ##  DESPLIEGUE COMPLETO (Git + Docker)
 
 ###  1. Clonar Repositorio
-git clone https://github.com/tu-usuario/microservicios-prueba-spring-back-end.git
+git clone https://github.com/fabianduartec/microservicios-prueba-spring-back-end.git
 cd microservicios-prueba-spring-back-end
 
 ###  2. Docker Build y Despliegue Completo (60 segundos)
@@ -117,6 +117,10 @@ src\test\java
 ### 2. Dar clic derecho y Run KarateTests
 
 Esperar alerta "✓ 5 tests passed" en verde
+
+## Reiniciar secuencia en tabla persona
+
+docker exec -it financiera-postgres psql -U postgres -d clientedb -c "SELECT setval('persona_id_persona_seq'::regclass, COALESCE((SELECT MAX(id_persona) FROM persona), 1), false);
 
 ## PRUEBAS UNITARIAS cuenta-service
 
