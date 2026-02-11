@@ -1,0 +1,695 @@
+{
+  "info": {
+    "_postman_id": "3b611eda-519a-43dc-897e-676becc05c70",
+    "name": "financiera-postman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49184354",
+    "_collection_link": "https://go.postman.co/collection/49184354-3b611eda-519a-43dc-897e-676becc05c70?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "getAllClientes",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "fabian",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/clientes/getAll",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes",
+            "getAll"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createCliente",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "fabian",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"clienteNombre\" : \"Jose Lema\",\r\n    \"clienteGenero\": \"M\",\r\n    \"clienteEdad\" : \"20\",\r\n    \"clienteIdentificacion\": \"100000002\",\r\n    \"clienteDireccion\" : \"Otavalo sn y  principal\",\r\n    \"clienteTelefono\" : \"098254785\",\r\n    \"clienteContrasena\": \"1234\",\r\n    \"clienteEstado\" : \"True\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clientes/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getClientePorId",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "fabian",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/clientes/get/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes",
+            "get",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "updateCliente",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "fabian",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n{\r\n    \"clienteNombre\" : \"Jose Lema\",\r\n    \"clienteGenero\": \"M\",\r\n    \"clienteEdad\" : \"20\",\r\n    \"clienteDireccion\" : \"Otavalo sn\",\r\n    \"clienteTelefono\" : \"098254785\",\r\n    \"clienteEstado\" : \"True\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clientes/update/6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes",
+            "update",
+            "6"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "updatePassword",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "fabian",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n{\r\n    \"clienteContrasenaActual\" : \"1234\",\r\n    \"clienteContrasenaNueva\" : \"12344\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clientes/update/1/password",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes",
+            "update",
+            "1",
+            "password"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getAllCuentas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/cuentas/getAll",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "cuentas",
+            "getAll"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createCuenta",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"cuentaNumero\" : 123456,\r\n    \"cuentaTipo\" : \"Corriente\",\r\n    \"cuentaSaldoInicial\" : 50000,\r\n    \"cuentaEstado\" : \"True\",\r\n    \"clienteNombre\" : \"Julian Arias\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/cuentas/create/200000000",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "cuentas",
+            "create",
+            "200000000"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getCuentaPorId",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/cuentas/get/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "cuentas",
+            "get",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "updateCuenta",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"cuentaTipo\" : \"Ahorros\",\r\n    \"cuentaEstado\" : \"True\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/cuentas/update/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "cuentas",
+            "update",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createCuentaClienteAutomatico",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"cuentaNumero\" : 222222,\r\n    \"cuentaTipo\" : \"Corriente\",\r\n    \"cuentaSaldoInicial\" : 20000,\r\n    \"cuentaEstado\" : \"True\",\r\n    \"clienteNombre\" : \"William Diaz\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/cuentas/create/300000000",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "cuentas",
+            "create",
+            "300000000"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createCuentaClienteAutomatico1",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"cuentaNumero\" : 111111,\r\n    \"cuentaTipo\" : \"Ahorros\",\r\n    \"cuentaSaldoInicial\" : 1000,\r\n    \"cuentaEstado\" : \"True\",\r\n    \"clienteNombre\" : \"Ivan Gallego\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/cuentas/create/400000000",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "cuentas",
+            "create",
+            "400000000"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getAllMovimientos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/movimientos/getAll",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "movimientos",
+            "getAll"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createMovimientosDeposito",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"cuentaNumero\" : 123456,\r\n    \"movimientoValor\" : 5000,\r\n    \"movimientoTipo\" : \"DEPOSITO\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/movimientos/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "movimientos",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createMovimientosRetiro",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"cuentaNumero\" : 585545,\r\n    \"movimientoValor\" : 2000,\r\n    \"movimientoTipo\" : \"RETIRO\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/movimientos/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "movimientos",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createMovimientosDeposito1",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"cuentaNumero\" : 111111,\r\n    \"movimientoValor\" : 10000,\r\n    \"movimientoTipo\" : \"DEPOSITO\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/movimientos/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "movimientos",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createMovimientosRetiro1",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"cuentaNumero\" : 111111,\r\n    \"movimientoValor\" : 2000,\r\n    \"movimientoTipo\" : \"RETIRO\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/movimientos/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "movimientos",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getMovimientoPorId",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/movimientos/get/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "movimientos",
+            "get",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getCuentaYMovimientosPorRangoDeFechas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/cuentas/reportes/generar?cliente=200000000&fechaInicio=2026-02-10T00:00:00&fechaFin=2026-02-28T23:59:59",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "cuentas",
+            "reportes",
+            "generar"
+          ],
+          "query": [
+            {
+              "key": "cliente",
+              "value": "200000000"
+            },
+            {
+              "key": "fechaInicio",
+              "value": "2026-02-10T00:00:00"
+            },
+            {
+              "key": "fechaFin",
+              "value": "2026-02-28T23:59:59"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getCuentaYMovimientosPorRangoDeFechas1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/cuentas/reportes/generar?cliente=300000000&fechaInicio=2026-02-01T00:00:00&fechaFin=2026-02-28T23:59:59",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "cuentas",
+            "reportes",
+            "generar"
+          ],
+          "query": [
+            {
+              "key": "cliente",
+              "value": "300000000"
+            },
+            {
+              "key": "fechaInicio",
+              "value": "2026-02-01T00:00:00"
+            },
+            {
+              "key": "fechaFin",
+              "value": "2026-02-28T23:59:59"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deleteCliente",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "fabian",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clientes/delete/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes",
+            "delete",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deleteCliente1",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "fabian",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clientes/delete/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes",
+            "delete",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
