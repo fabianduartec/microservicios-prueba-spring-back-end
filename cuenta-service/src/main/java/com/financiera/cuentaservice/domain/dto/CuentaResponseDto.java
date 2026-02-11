@@ -1,9 +1,6 @@
 package com.financiera.cuentaservice.domain.dto;
 
-import com.financiera.cuentaservice.domain.model.Movimiento;
-
 import java.math.BigDecimal;
-import java.util.List;
 
 public record CuentaResponseDto(
         Long cuentaId,

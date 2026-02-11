@@ -1,6 +1,5 @@
 package com.financiera.cuentaservice.domain.repository;
 
-import com.financiera.cuentaservice.domain.dto.MovimientoRequestDto;
 import com.financiera.cuentaservice.domain.model.Cuenta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,6 +17,4 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
     @Query("SELECT COUNT(c) > 0 FROM Cuenta c WHERE c.idCliente = :idCliente AND c.estadoCuenta = true")
     boolean existsByIdClienteAndEstadoCuentaTrue(@Param("idCliente") Long idCliente);
 
-    @Query("SELECT DISTINCT c.nombreCliente FROM Cuenta c WHERE c.idCliente = :idCliente")
-    String findNombreClienteByIdCliente(@Param("idCliente") Long idCliente);
 }

@@ -1,6 +1,5 @@
 package com.financiera.cuentaservice.aplication.service;
 
-import com.financiera.cuentaservice.domain.common.CuentaNoEncontradaException;
 import com.financiera.cuentaservice.domain.dto.CuentaReporteDTO;
 import com.financiera.cuentaservice.domain.dto.EstadoCuentaReporteDTO;
 import com.financiera.cuentaservice.domain.dto.MovimientoReporteDTO;

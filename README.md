@@ -101,9 +101,9 @@ docker-compose ps
 ### **Test Unitarios JUnit (carpeta `src/test`)**
 
 ### 1. Ubicar el archivo
-src\test\java\
-			com.financiera.clienteservice.cliente.service
-				ClienteServiceTest.java
+├──src\test\java\
+├──────	com.financiera.clienteservice.cliente.service
+├────────────ClienteServiceTest.java
 ### 2. Dar clic derecho y Run ClienteServiceTest
 
 Esperar alerta "✓ 2 tests passed" en verde
@@ -111,8 +111,8 @@ Esperar alerta "✓ 2 tests passed" en verde
 ### **Set de Pruebas Karate (carpeta `src/test`)**
 
 ### 2. Ubicar el archivo
-src\test\java
-	KarateTests.java
+├──src\test\java
+├──────	KarateTests.java
 	
 ### 2. Dar clic derecho y Run KarateTests
 
@@ -127,8 +127,8 @@ docker exec -it financiera-postgres psql -U postgres -d clientedb -c "SELECT set
 ### **Set de Pruebas Karate (carpeta `src/test`)**
 
 ### 2. Ubicar el archivo
-src\test\java
-	KarateTests.java
+├──src\test\java
+├──────	KarateTests.java
 
 ### 2. Dar clic derecho y Run KarateTests
 
