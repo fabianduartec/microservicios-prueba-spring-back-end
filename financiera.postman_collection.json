@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "6c6081f1-4e80-40e4-ac16-17e70587adeb",
+    "_postman_id": "b37a6fb0-117d-409a-972c-ef7038407fe9",
     "name": "financiera-postman Copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "49184354",
-    "_collection_link": "https://go.postman.co/collection/49184354-6c6081f1-4e80-40e4-ac16-17e70587adeb?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/49184354-b37a6fb0-117d-409a-972c-ef7038407fe9?source=collection_link"
   },
   "item": [
     {
@@ -64,7 +64,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"clienteNombre\" : \"Jose Lema\",\r\n    \"clienteGenero\": \"M\",\r\n    \"clienteEdad\" : \"20\",\r\n    \"clienteIdentificacion\": \"100000002\",\r\n    \"clienteDireccion\" : \"Otavalo sn y  principal\",\r\n    \"clienteTelefono\" : \"098254785\",\r\n    \"clienteContrasena\": \"1234\",\r\n    \"clienteEstado\" : \"True\"\r\n}",
+          "raw": "{\r\n    \"clienteNombre\" : \"Manuel Limon\",\r\n    \"clienteGenero\": \"M\",\r\n    \"clienteEdad\" : \"20\",\r\n    \"clienteIdentificacion\": \"100000002\",\r\n    \"clienteDireccion\" : \"Otavalo sn y  principal\",\r\n    \"clienteTelefono\" : \"098254785\",\r\n    \"clienteContrasena\": \"1234\",\r\n    \"clienteEstado\" : \"True\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -144,7 +144,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "\r\n{\r\n    \"clienteNombre\" : \"Jose Lema\",\r\n    \"clienteGenero\": \"M\",\r\n    \"clienteEdad\" : \"20\",\r\n    \"clienteDireccion\" : \"Otavalo sn\",\r\n    \"clienteTelefono\" : \"098254785\",\r\n    \"clienteEstado\" : \"True\"\r\n}",
+          "raw": "\r\n{\r\n    \"clienteNombre\" : \"Manuel Limon\",\r\n    \"clienteGenero\": \"M\",\r\n    \"clienteEdad\" : \"20\",\r\n    \"clienteDireccion\" : \"Otavalo sn\",\r\n    \"clienteTelefono\" : \"098254785\",\r\n    \"clienteEstado\" : \"True\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -537,7 +537,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8081/cuentas/reportes/generar?cliente=200000000&fechaInicio=2026-02-10T00:00:00&fechaFin=2026-02-28T23:59:59",
+          "raw": "http://localhost:8081/cuentas/reportes/generar?cliente=200000000&fechaInicio=2026-02-01T00:00:00&fechaFin=2026-02-28T23:59:59",
           "protocol": "http",
           "host": [
             "localhost"
@@ -555,7 +555,7 @@
             },
             {
               "key": "fechaInicio",
-              "value": "2026-02-10T00:00:00"
+              "value": "2026-02-01T00:00:00"
             },
             {
               "key": "fechaFin",
@@ -572,7 +572,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8081/cuentas/reportes/generar?cliente=300000000&fechaInicio=2026-02-01T00:00:00&fechaFin=2026-02-28T23:59:59",
+          "raw": "http://localhost:8081/cuentas/reportes/generar?cliente=100000000&fechaInicio=2026-02-01T00:00:00&fechaFin=2026-02-28T23:59:59",
           "protocol": "http",
           "host": [
             "localhost"
@@ -586,7 +586,7 @@
           "query": [
             {
               "key": "cliente",
-              "value": "300000000"
+              "value": "100000000"
             },
             {
               "key": "fechaInicio",
